@@ -30,6 +30,9 @@ public class Main {
             case 4:
                 exerciseThreeRun(scanner);
                 break;
+            case 5:
+                exerciseFourRun(scanner);
+                break;
             default:
                 System.out.println("no");
                 throw new AssertionError();
@@ -40,7 +43,7 @@ public class Main {
 
     }
 
-
+    //Escreva um código que receba o nome e o ano de nascimento de alguém e imprima na tela a seguinte mensagem: "Olá 'Fulano' você tem 'X' anos"
     public static void exerciseOneRun(Scanner scanner){
 
         challenges1.Person user = new challenges1.Person();
@@ -57,7 +60,7 @@ public class Main {
 
     }
 
-
+    //Escreva um código que receba o tamanho do lado de um quadrado, calcule sua área e exiba na tela
     public static void exerciseTwoRun(Scanner scanner){
 
         challenges1.Square square = new challenges1.Square();
@@ -70,7 +73,7 @@ public class Main {
 
     }
 
-
+    //Escreva um código que receba a base e a alturade um retângulo, calcule sua área e exiba na tela
     public static void exerciseThreeRun(Scanner scanner){
 
     challenges1.Rectangle rectangle = new challenges1.Rectangle();
@@ -84,6 +87,24 @@ public class Main {
     rectangle.setLength(length);
 
     System.out.println("Tamanho do seu quadrado é .: "+rectangle.getArea());
+    }
+
+
+    //Escreva um código que receba o nome e a idade de 2 pessoas e imprima a diferença de idade entre elas
+    public static void exerciseFourRun(Scanner scanner){
+        Person ricardo = new Person();
+        Person pedro = new Person();
+
+
+        System.out.println("Qual a idade da primeira pessoa a ser comparada?");
+        ricardo.setAge(scanner.nextInt());
+        
+        System.out.println("Qual a idade da segunda pessoa a ser comparada?");
+        pedro.setAge(scanner.nextInt());
+
+        int ageDiff = AgeHelper.calculateAgeDiff(ricardo.getAge(), pedro.getAge());
+        System.out.println("a diferença das idades "+ricardo.getAge()+" e "+pedro.getAge()+ " é "+ageDiff);
 
     }
+
 }

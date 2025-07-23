@@ -9,8 +9,8 @@ package challenges1;
 public class Person {
     
 
-    protected String name;
-    protected int age; 
+    private String name;
+    private int age; 
 
     public void setName(String name){
         this.name = name;
