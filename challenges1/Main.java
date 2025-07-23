@@ -24,6 +24,12 @@ public class Main {
             case 2: 
                 exerciseOneRun(scanner);
                 break;
+            case 3:
+                exerciseTwoRun(scanner);
+                break;
+            case 4:
+                exerciseThreeRun(scanner);
+                break;
             default:
                 System.out.println("no");
                 throw new AssertionError();
@@ -52,5 +58,32 @@ public class Main {
     }
 
 
+    public static void exerciseTwoRun(Scanner scanner){
 
+        challenges1.Square square = new challenges1.Square();
+
+        System.out.println("Altura?");
+        double height = scanner.nextDouble();
+        square.setHeight(height);
+
+        System.out.println("Tamanho do seu quadrado é .: "+square.getArea());
+
+    }
+
+
+    public static void exerciseThreeRun(Scanner scanner){
+
+    challenges1.Rectangle rectangle = new challenges1.Rectangle();
+
+    System.out.println("Altura?");
+    double height = scanner.nextDouble();
+    rectangle.setHeight(height);
+    
+    System.out.println("Largura?");
+    double length = scanner.nextDouble();
+    rectangle.setLength(length);
+
+    System.out.println("Tamanho do seu quadrado é .: "+rectangle.getArea());
+
+    }
 }
