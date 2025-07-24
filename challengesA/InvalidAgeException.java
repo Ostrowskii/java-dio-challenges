@@ -1,4 +1,4 @@
-package challenges1;
+package challengesA;
 
 class InvalidAgeException extends RuntimeException {
     public InvalidAgeException(String message){

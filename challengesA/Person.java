@@ -4,7 +4,7 @@ alguém e imprima na tela a seguinte
 mensagem: "Olá 'Fulano' você tem 'X' anos"
 */
 
-package challenges1;
+package challengesA;
 
 public class Person {
     

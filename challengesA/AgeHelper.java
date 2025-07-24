@@ -1,4 +1,4 @@
-package challenges1;
+package challengesA;
 
 public class AgeHelper {
 

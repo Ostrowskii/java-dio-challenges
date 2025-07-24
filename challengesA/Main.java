@@ -1,6 +1,5 @@
-package challenges1;
+package challengesA;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -48,50 +47,30 @@ public class Main {
 
     //Escreva um código que receba o nome e o ano de nascimento de alguém e imprima na tela a seguinte mensagem: "Olá 'Fulano' você tem 'X' anos"
     public static void exerciseOneRun(Scanner scanner){
-
-        challenges1.Person user = new challenges1.Person();
+        challengesA.Person user = new challengesA.Person();
 
         System.out.println("Nome?");
         String name = scanner.nextLine();
-        //exception
-        if (name.trim().isEmpty()){
-            throw new IllegalArgumentException("O nome não pode estar vazio.");
-        }
+        InputHelper.validadeNonEmptyString(name, "nome (name)");
         user.setName(name);
         
         System.out.println("Idade?");
-        int age;
-
-        try{
-            age = scanner.nextInt();
-            if(age <= 0 || age> 150){
-                throw new InvalidAgeException("Idade inválida. Deve estar entre 1 e 130");
-            }
-        }catch(InputMismatchException e){
-            throw new InvalidAgeException("Entrada inválida. Digite um número inteiro");
-
-        }
-        
+        int age = scanner.nextInt();
+        InputHelper.validadeAge(age);
         user.setAge(age);
-        System.out.println("Olá "+user.getName()+" você tem "+user.getAge()+" anos");
 
+
+        System.out.println("Olá "+user.getName()+" você tem "+user.getAge()+" anos");
     }
 
     //Escreva um código que receba o tamanho do lado de um quadrado, calcule sua área e exiba na tela
     public static void exerciseTwoRun(Scanner scanner){
 
-        challenges1.Square square = new challenges1.Square();
+        challengesA.Square square = new challengesA.Square();
 
         System.out.println("Altura?");
-        double height;
-        try {
-            height = scanner.nextDouble();
-            if(height<=0){
-                throw new InvalidSizeException("tamanho não pode ser 0 nem negativo.");
-            }
-        } catch (InputMismatchException e) {
-            throw new InvalidSizeException("valor invalido, digite um numero valido, exemplo: 4; 5.65");
-        }
+        double height = scanner.nextDouble();
+        InputHelper.validadePositiveNumber(height, "altura (height)");
         square.setHeight(height);
 
         System.out.println("Tamanho do seu quadrado é .: "+square.getArea());
@@ -101,37 +80,21 @@ public class Main {
     //Escreva um código que receba a base e a alturade um retângulo, calcule sua área e exiba na tela
     public static void exerciseThreeRun(Scanner scanner){
 
-        challenges1.Rectangle rectangle = new challenges1.Rectangle();
+        challengesA.Rectangle rectangle = new challengesA.Rectangle();
         
 
         //altura
         System.out.println("Altura?");
-        double height;
-        try {
-            height = scanner.nextDouble();
-            if(height<=0){
-                throw new InvalidSizeException("tamanho não pode ser 0 nem negativo.");
-            }
-        } catch (InputMismatchException e) {
-            throw new InvalidSizeException("valor invalido, digite um numero valido, exemplo: 4; 5.65");
-        }
+        double height = scanner.nextDouble();
+        InputHelper.validadePositiveNumber(height, "altura (height)");
         rectangle.setHeight(height);
         
         
         //largura
         System.out.println("Largura?");
-        double length;
-
-            try{
-                length = scanner.nextDouble();
-                if(length<=0){
-                    throw new InvalidSizeException("tamanho não pode ser 0 nem negativo.");
-                }
-            }catch(InputMismatchException e ){
-                throw new InvalidSizeException("valor invalido, digite um numero valido, exemplo: 4; 5.65");
-            }
+        double length =scanner.nextDouble();
+        InputHelper.validadePositiveNumber(length, "largura (length)");
         rectangle.setLength(length);
-
         
         //menssagem final
         System.out.println("Tamanho do seu quadrado é .: "+rectangle.getArea());
@@ -145,41 +108,19 @@ public class Main {
 
 
         System.out.println("Qual a idade da primeira pessoa a ser comparada?");
-        int firstAge;
-
-        try {
-            firstAge = scanner.nextInt();
-            scanner.nextLine();
-            if(firstAge<=0){
-                throw new InvalidAgeException("idade não pode ser 0 nem negativa.");
-            }
-        } catch (InputMismatchException e) {
-            throw new InvalidAgeException("entrada invalida. digite um numero inteiro.");
-        }
-
+        int firstAge = scanner.nextInt();
+        InputHelper.validadeAge(firstAge);
         ricardo.setAge(firstAge);
-
-
-
 
         
         System.out.println("Qual a idade da segunda pessoa a ser comparada?");
-        int secondAge;
-
-        try {
-            secondAge = scanner.nextInt();
-            scanner.nextLine();
-            if(secondAge<=0){
-                throw new InvalidAgeException("idade não pode ser 0 nem negativa.");
-            }
-        } catch (InputMismatchException e) {
-            throw new InvalidAgeException("entrada invalida. digite um numero inteiro.");
-        }
+        int secondAge = scanner.nextInt();
+        InputHelper.validadeAge(secondAge);
         pedro.setAge(secondAge);
+
 
         int ageDiff = AgeHelper.calculateAgeDiff(ricardo.getAge(), pedro.getAge());
         System.out.println("a diferença das idades "+ricardo.getAge()+" e "+pedro.getAge()+ " é "+ageDiff);
-
     }
 
 }
