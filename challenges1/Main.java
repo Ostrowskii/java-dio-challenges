@@ -1,5 +1,6 @@
 package challenges1;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -10,27 +11,28 @@ public class Main {
 
         System.out.println("Qual dos exercícios da primeira seção você deseja ver?");
         System.out.println("0 - leave");
-        System.out.println("1 - Back");
-        System.out.println("2 - Age");
-        System.out.println("3 - Square size");
-        System.out.println("4 - Rectangle");
-        System.out.println("5 - Age Diference");
+        System.out.println("1 - Age");
+        System.out.println("2 - Square size");
+        System.out.println("3 - Rectangle");
+        System.out.println("4 - Age Diference");
 
         int answer = scanner.nextInt();
         scanner.nextLine();
         
 
         switch (answer) {
-            case 2: 
+            case 0:
+                break;
+            case 1: 
                 exerciseOneRun(scanner);
                 break;
-            case 3:
+            case 2:
                 exerciseTwoRun(scanner);
                 break;
-            case 4:
+            case 3:
                 exerciseThreeRun(scanner);
                 break;
-            case 5:
+            case 4:
                 exerciseFourRun(scanner);
                 break;
             default:
@@ -42,6 +44,7 @@ public class Main {
         scanner.close();
 
     }
+    
 
     //Escreva um código que receba o nome e o ano de nascimento de alguém e imprima na tela a seguinte mensagem: "Olá 'Fulano' você tem 'X' anos"
     public static void exerciseOneRun(Scanner scanner){
@@ -49,13 +52,29 @@ public class Main {
         challenges1.Person user = new challenges1.Person();
 
         System.out.println("Nome?");
-        String answerName = scanner.nextLine();
-        user.setName(answerName);
+        String name = scanner.nextLine();
+        //exception
+        if (name.trim().isEmpty()){
+            throw new IllegalArgumentException("O nome não pode estar vazio.");
+        }
+        user.setName(name);
         
         System.out.println("Idade?");
-        int answerAge = scanner.nextInt();
-        user.setAge(answerAge);
+        int age;
 
+        try{
+            age = scanner.nextInt();
+            if(age <= 0 || age> 150){
+                throw new InvalidAgeException("Idade inválida. Deve estar entre 1 e 130");
+            }
+        }catch(InputMismatchException e){
+            throw new InvalidAgeException("Entrada inválida. Digite um número inteiro");
+
+        }
+        
+        
+        
+        user.setAge(age);
         System.out.println("Olá "+user.getName()+" você tem "+user.getAge()+" anos");
 
     }
