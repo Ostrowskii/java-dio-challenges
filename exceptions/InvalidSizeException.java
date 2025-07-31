@@ -1,6 +1,6 @@
-package challengesA;
+package exceptions;
 
-class InvalidSizeException extends RuntimeException {
+public class InvalidSizeException extends RuntimeException {
     public InvalidSizeException(String message){
         super(message);
     }

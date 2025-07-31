@@ -1,10 +1,15 @@
 package challengesA;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import utils.CalculatorHelper;
+import utils.InputHelper;
+
 
 
 public class Main {
-        public static void main(String[] args){
+    public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
 
 
@@ -46,17 +51,17 @@ public class Main {
     
 
     //Escreva um código que receba o nome e o ano de nascimento de alguém e imprima na tela a seguinte mensagem: "Olá 'Fulano' você tem 'X' anos"
-    public static void exerciseOneRun(Scanner scanner){
+    private static void exerciseOneRun(Scanner scanner){
         challengesA.Person user = new challengesA.Person();
 
         System.out.println("Nome?");
         String name = scanner.nextLine();
-        InputHelper.validadeNonEmptyString(name, "nome (name)");
+        InputHelper.validateNonEmptyString(name, "nome (name)");
         user.setName(name);
         
         System.out.println("Idade?");
         int age = scanner.nextInt();
-        InputHelper.validadeAge(age);
+        InputHelper.validateAge(age);
         user.setAge(age);
 
 
@@ -64,13 +69,12 @@ public class Main {
     }
 
     //Escreva um código que receba o tamanho do lado de um quadrado, calcule sua área e exiba na tela
-    public static void exerciseTwoRun(Scanner scanner){
+    private static void exerciseTwoRun(Scanner scanner){
 
         challengesA.Square square = new challengesA.Square();
 
         System.out.println("Altura?");
-        double height = scanner.nextDouble();
-        InputHelper.validadePositiveNumber(height, "altura (height)");
+        double height = InputHelper.validatePositiveDouble(scanner, "altura (height)");
         square.setHeight(height);
 
         System.out.println("Tamanho do seu quadrado é .: "+square.getArea());
@@ -78,22 +82,20 @@ public class Main {
     }
 
     //Escreva um código que receba a base e a alturade um retângulo, calcule sua área e exiba na tela
-    public static void exerciseThreeRun(Scanner scanner){
+    private static void exerciseThreeRun(Scanner scanner){
 
         challengesA.Rectangle rectangle = new challengesA.Rectangle();
         
 
         //altura
         System.out.println("Altura?");
-        double height = scanner.nextDouble();
-        InputHelper.validadePositiveNumber(height, "altura (height)");
+        double height = InputHelper.validatePositiveDouble(scanner, "altura (height)");
         rectangle.setHeight(height);
         
         
         //largura
         System.out.println("Largura?");
-        double length =scanner.nextDouble();
-        InputHelper.validadePositiveNumber(length, "largura (length)");
+        double length = InputHelper.validatePositiveDouble(scanner, "largura (length)");
         rectangle.setLength(length);
         
         //menssagem final
@@ -102,24 +104,31 @@ public class Main {
 
 
     //Escreva um código que receba o nome e a idade de 2 pessoas e imprima a diferença de idade entre elas
-    public static void exerciseFourRun(Scanner scanner){
+    private static void exerciseFourRun(Scanner scanner){
         Person ricardo = new Person();
+        ricardo.setName("ricardo");
         Person pedro = new Person();
+        ricardo.setName("pedro");
 
 
         System.out.println("Qual a idade da primeira pessoa a ser comparada?");
         int firstAge = scanner.nextInt();
-        InputHelper.validadeAge(firstAge);
+        InputHelper.validateAge(firstAge);
         ricardo.setAge(firstAge);
 
         
         System.out.println("Qual a idade da segunda pessoa a ser comparada?");
         int secondAge = scanner.nextInt();
-        InputHelper.validadeAge(secondAge);
+        InputHelper.validateAge(secondAge);
         pedro.setAge(secondAge);
 
 
-        int ageDiff = AgeHelper.calculateAgeDiff(ricardo.getAge(), pedro.getAge());
+        List<Person> list = new ArrayList<>();
+        list.add(ricardo);
+        list.add(pedro);
+        list.sort((a,b) -> Integer.compare(a.getAge(), b.getAge()));
+        int ageDiff = CalculatorHelper.calculateAgeDiff(ricardo.getAge(), pedro.getAge());
+
         System.out.println("a diferença das idades "+ricardo.getAge()+" e "+pedro.getAge()+ " é "+ageDiff);
     }
 
